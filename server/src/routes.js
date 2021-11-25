@@ -15,6 +15,7 @@ routes.delete('/api/users/:_id', User.delete)
 routes.put('/api/users/:_id', User.update)
 routes.post('/api/users/login', User.login)
 routes.get('/api/users/checktoken', User.checkToken)
+routes.get('/api/users/checktoken', User.destroyToken)
 
 
 // articles routes

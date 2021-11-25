@@ -18,7 +18,7 @@ import Home from './pages/client/home'
 import ArticlesDetails from './pages/client/articles/articles.details'
 // import Login from './pages/admin/login'
 
-// import PrivateRoute from './services/wAuth'
+import PrivateRoute from './services/wAuth'
 
 export default function Root() {
   return (
@@ -34,7 +34,7 @@ export default function Root() {
         <Route path="/admin/articles/cadastrar" element={<AddArticle />} />
         <Route path="/admin/articles/editar/:idArticle" element={<EditArticle />} />
 
-        <Route path="/admin/users" element={<UsersList />} />
+        <PrivateRoute path="/admin/users" element={<UsersList />} />
         <Route path="/admin/users/cadastrar" element={<AddUser />} />
         <Route path="/admin/users/editar/:idUser" element={<EditUser />} />
       </Routes>
