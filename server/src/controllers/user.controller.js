@@ -48,14 +48,23 @@ module.exports = {
         console.log(err)
         res.status(200).json({erro: "Servidor Error. Please try again"})
       }else if (!user){
-        res.status(200).json({status:2, error: "E-mail or password do not match"})
+        res.status(200).json({status:2, error: "E-mail inválido"})
       }else{
-        const payload = { email }
-        const token = jwt.sign(payload, secret, {
-            expiresIn: '24h'
+        user.isCorrectPassword(password, async function (err, same){
+          if(err){
+            res.status(200).json({erro: "Servidor Error. Please try again"})
+          }else if(!same){
+            res.status(200).json({status:2, error: "Senha inválida"});
+          }else{
+            const payload = { email }
+            const token = jwt.sign(payload, secret, {
+                expiresIn: '24h'
+            })
+            res.cookie('token', token, {httpOnly: true});
+            res.status(200).json({status:1, auth:true, token:token, id_client: user._id, user_name:user.user_name, user_type:user.user_type});
+          }
         })
-        res.cookie('token', token, {httpOnly: true});
-        res.status(200).json({status:1, auth:true, token:token,id_client: user._id, user_name:user.user_name, user_type:user.user_type});
+        
     }
     })
   }

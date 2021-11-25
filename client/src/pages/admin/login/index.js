@@ -23,7 +23,7 @@ import CircularProgress from '@material-ui/core/CircularProgress'
 
 import api from '../../../services/api'
 
-// import { setNomeUsuario, login, setIdUsuario, setTipoUsuario } from '../../../services/auth'
+import { setUserName, login, setUserId, setUserType } from '../../../services/auth'
 
 function Copyright() {
   return (
@@ -69,10 +69,10 @@ export default function SignIn() {
     await api.post('/api/users/login', { email, password }).then((res) => {
       if (res.status === 200) {
         if (res.data.status === 1) {
-          // login(res.data.token)
-          // setIdUsuario(res.data.id_client)
-          // setNomeUsuario(res.data.user_name)
-          // setTipoUsuario(res.data.user_type)
+          login(res.data.token)
+          setUserId(res.data.id_client)
+          setUserName(res.data.user_name)
+          setUserType(res.data.user_type)
 
           window.location.href = '/admin'
         } else if (res.data.status === 2) {
