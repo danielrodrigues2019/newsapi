@@ -28,8 +28,8 @@ export default function Root() {
         <Route path="/" element={<Home />} />
         <Route path="/articles/:idArticle" element={<ArticlesDetails />} />
         {/* Admin route */}
-        <Route path="/admin/login" exact component={Login} />
         <Route path="/admin" element={<Dashboard />} />
+        <Route path="/admin/login" element={<Login />} />
 
         <Route path="/admin/articles" element={<ArticlesList />} />
         <Route path="/admin/articles/cadastrar" element={<AddArticle />} />

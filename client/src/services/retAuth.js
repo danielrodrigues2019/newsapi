@@ -1,22 +1,26 @@
 import React, { useEffect, useState } from 'react'
-import { Route, Navigate } from 'react-router-dom'
+import { Route, useNavigate, Router, Routes } from 'react-router-dom'
+import LinearProgress from '@material-ui/core/LinearProgress'
 
 export default function RetAuth({ component: Component, ...rest }) {
   const [redirect, setRedirect] = useState(false)
   const [loading, setLoading] = useState(true)
-  return (
+
+  const navigate = useNavigate()
+
+  return loading ? (
+    <LinearProgress style={{ width: '50%', margin: '80px auto' }} />
+  ) : (
     <>
-      loading ?
-      <Route
-        {...rest}
-        render={(props) =>
-          !redirect ? (
-            <Component {...props} />
-          ) : (
-            <Navigate to={{ pathname: '/admin/login', state: { from: props.location } }} />
-          )
-        }
-      />
+      {!redirect ? (
+        <div>
+          <h1>test</h1>
+        </div>
+      ) : (
+        <div onLoad={() => navigate('/admin/login')}>
+          <p>admin test</p>
+        </div>
+      )}
     </>
   )
 }

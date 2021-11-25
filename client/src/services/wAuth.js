@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import api from './api'
 import { login, logout, getToken } from './auth'
-import LinearProgress from '@material-ui/core/LinearProgress'
 import RetAuth from './retAuth'
 
 export default function WAuth() {
@@ -27,8 +26,7 @@ export default function WAuth() {
 
   return (
     <>
-      <LinearProgress style={{ width: '50%', margin: '80px auto' }} />
-      <RetAuth />
+      <RetAuth redirect={redirect} loading={loading} />
     </>
   )
 }
