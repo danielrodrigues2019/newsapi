@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import api from './api'
 import { login, logout, getToken } from './auth'
-import RetAuth from './retAuth'
+import { Route, Navigate } from 'react-router-dom'
+import LinearProgress from '@material-ui/core/LinearProgress'
 
-export default function WAuth() {
+export default function WAuth({ component: Component, ...rest }) {
   const [redirect, setRedirect] = useState(false)
   const [loading, setLoading] = useState(true)
 
@@ -24,9 +25,18 @@ export default function WAuth() {
     verify()
   }, [])
 
-  return (
-    <>
-      <RetAuth redirect={redirect} loading={loading} />
-    </>
+  return loading ? (
+    <LinearProgress style={{ width: '50%', margin: '80px auto' }} />
+  ) : (
+    <Route
+      {...rest}
+      render={(props) =>
+        !redirect ? (
+          <Component {...props} />
+        ) : (
+          <Navigate to={{ pathname: '/admin/login', state: { from: props.location } }} />
+        )
+      }
+    />
   )
 }
