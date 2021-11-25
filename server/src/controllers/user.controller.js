@@ -37,5 +37,24 @@ module.exports = {
     const data = {user_name, user_email, user_type, user_password}
     const user = await User.findOneAndUpdate({_id}, data, {new:true})
     res.json(user)
+  },
+
+  async login(req,res) {
+    const {email, password} = req.body
+    User.findOne({user_email:email, user_type:1}, function(err, user){
+      if(err){
+        console.log(err)
+        res.status(200).json({erro: "Servidor Error. Please try again"})
+      }else if (!user){
+        res.status(200).json({status:2, error: "E-mail or password do not match"})
+      }else{
+        const payload = { email }
+        const token = jwt.sign(payload, secret, {
+            expiresIn: '24h'
+        })
+        res.cookie('token', token, {httpOnly: true});
+        res.status(200).json({status:1, auth:true, token:token,id_client: user._id, user_name:user.user_name, user_type:user.user_type});
+    }
+    })
   }
 }

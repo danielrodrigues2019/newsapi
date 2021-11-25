@@ -13,6 +13,7 @@ routes.get('/api/users', User.index)
 routes.get('/api/users/details/:_id', User.details)
 routes.delete('/api/users/:_id', User.delete)
 routes.put('/api/users/:_id', User.update)
+routes.post('/api/users/login', User.login)
 
 
 // articles routes
