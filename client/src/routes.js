@@ -16,7 +16,7 @@ import EditUser from './pages/admin/users/editUser'
 //imports client
 import Home from './pages/client/home'
 import ArticlesDetails from './pages/client/articles/articles.details'
-import Login from './pages/admin/login'
+// import Login from './pages/admin/login'
 
 // import PrivateRoute from './services/wAuth'
 
@@ -29,7 +29,6 @@ export default function Root() {
         <Route path="/articles/:idArticle" element={<ArticlesDetails />} />
         {/* Admin route */}
         <Route path="/admin" element={<Dashboard />} />
-        <Route path="/admin/login" element={<Login />} />
 
         <Route path="/admin/articles" element={<ArticlesList />} />
         <Route path="/admin/articles/cadastrar" element={<AddArticle />} />
