@@ -1,4 +1,6 @@
 const User = require('../models/user.model')
+const jwt = require("jsonwebtoken");
+const secret = "mysecret";
 
 module.exports = {
   async index(req,res){
