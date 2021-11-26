@@ -11,9 +11,6 @@ import api from '../../../services/api'
 import MenuAdmin from '../../../components/menu-admin'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 import Footer from '../../../components/footer-admin'
-// import 'date-fns'
-// import DateFnsUtils from '@date-io/date-fns'
-// import { MuiPickersUtilsProvider,  KeyboardDatePicker } from '@material-ui/pickers'
 
 const useStyles = makeStyles((theme) => ({
   root: { display: 'flex' },
@@ -52,12 +49,6 @@ export default function AddArticle() {
       alert('Por favor, preencha todos os dados!')
     }
   }
-  // const handleDateChange = (date) => {
-  //   setPublishDate(date)
-  // }
-  const data = new Date();
-  const  dataFormatada = ("0" + data.getDate()).substr(-2) + "/"
-    + ("0" + (data.getMonth() + 1)).substr(-2) + "/" + data.getFullYear();
 
   return (
     <div className={classes.root}>
@@ -105,7 +96,6 @@ export default function AddArticle() {
                       required
                       id="content"
                       name="content"
-                      label="Data"
                       fullWidth
                       autoComplete="content"
                       variant="standard"
@@ -113,24 +103,7 @@ export default function AddArticle() {
                       onChange={(e) => setPublishDate(e.target.value)}
                     />
                   </Grid>
-                  {/* <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                    <Grid container justifyContent="space-around">
-                      <KeyboardDatePicker
-                        disableToolbar
-                        variant="inline"
-                        format="dd/MM/yyyy"
-                        margin="normal"
-                        id="publishDate"
-                        label="Data de"
-                        value={publishDate}
-                        onChange={handleDateChange}
-                        KeyboardButtonProps={{
-                          'aria-label': 'change date',
-                        }}
-                      />
-                    </Grid>
-                  </MuiPickersUtilsProvider> */}
-                  <Grid item xs={12} sm={12}>
+                   <Grid item xs={12} sm={12}>
                     <Button variant="contained" onClick={handleSubmit} className={classes.btnSuccess}>
                       <SaveIcon /> Salvar
                     </Button>

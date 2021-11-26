@@ -5,10 +5,6 @@ import TextField from '@material-ui/core/TextField'
 import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
-import FormControl from '@material-ui/core/FormControl'
-import Select from '@material-ui/core/Select'
-import InputLabel from '@material-ui/core/InputLabel'
-import MenuItem from '@material-ui/core/MenuItem'
 import Button from '@material-ui/core/Button'
 import AddIcon from '@material-ui/icons/Add'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack'
@@ -32,41 +28,38 @@ const useStyles = makeStyles((theme) => ({
 export default function EditArticle() {
   const classes = useStyles()
 
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [type, setType] = useState('')
+  const [title, setTitle] = useState('')
+  const [content, setContent] = useState('')
+  const [publishDate, setPublishDate] = useState('')
 
-  const { idUser } = useParams()
+  const { idArticle } = useParams()
 
   useEffect(() => {
-    async function getUser() {
-      var response = await api.get('/api/users/details/' + idUser)
+    async function getArticle() {
+      var response = await api.get('/api/articles/details/' + idArticle)
 
-      setName(response.data.user_name)
-      setEmail(response.data.user_email)
-      setPassword(response.data.user_password)
-      setType(response.data.user_type)
+      setTitle(response.data.title)
+      setContent(response.data.content)
+      setPublishDate(response.data.publishDate)
     }
-    getUser()
-  }, [idUser])
+    getArticle()
+  }, [idArticle])
 
   async function handleSubmit() {
     const data = {
-      user_name: name,
-      user_email: email,
-      user_password: password,
-      user_type: type,
-      _id: idUser,
+      title: title,
+      content: content,
+      publishDate: publishDate,
+      _id: idArticle,
     }
 
-    if (name !== '' && email !== '' && password !== '' && type !== '') {
-      const response = await api.put('/api/users/:_id', data)
+    if (title !== '' && content !== '' && publishDate !== '') {
+      const response = await api.put('/api/articles/:_id', data)
 
       if (response.status === 200) {
-        window.location.href = '/admin/users'
+        window.location.href = '/admin/articles'
       } else {
-        alert('Erro ao Atualizar o usuário!')
+        alert('Erro ao Atualizar a notícia!')
       }
     } else {
       alert('Por favor, preencha todos os dados!')
@@ -75,70 +68,59 @@ export default function EditArticle() {
 
   return (
     <div className={classes.root}>
-      <MenuAdmin title={'USUÁRIOS'} />
+      <MenuAdmin title={'NOTÍCIAS'} />
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
             <Grid item sm={12}>
-              <Button style={{ marginBottom: 10, marginRight: 5 }} variant="contained" href={'/admin/users'}>
+              <Button style={{ marginBottom: 10, marginRight: 5 }} variant="contained" href={'/admin/articles'}>
                 <ArrowBackIcon /> Voltar
               </Button>
-              <Button style={{ marginBottom: 10 }} variant="contained" color="primary" href={'/admin/users/cadastrar'}>
+              <Button style={{ marginBottom: 10 }} variant="contained" color="primary" href={'/admin/articles/cadastrar'}>
                 <AddIcon />
                 Cadastrar
               </Button>
               <Paper className={classes.paper}>
-                <h2>Atualização de Usuários</h2>
+                <h2>Atualização de Notícia</h2>
                 <Grid container spacing={3}>
                   <Grid item xs={12} sm={12}>
                     <TextField
                       required
-                      id="user_name"
-                      name="user_name"
-                      label="Nome Completo"
+                      id="title"
+                      name="title"
+                      label="Título"
                       fullWidth
                       autoComplete="name"
                       variant="standard"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
+                      value={title}
+                      onChange={(e) => setTitle(e.target.value)}
                     />
                   </Grid>
-                  <Grid item xs={12} sm={6}>
+                  <Grid item xs={12} sm={12}>
                     <TextField
                       required
-                      id="user_email"
-                      name="user_email"
-                      label="E-mail"
+                      id="content"
+                      name="content"
+                      label="Conteúdo"
                       fullWidth
-                      autoComplete="email"
+                      autoComplete="content"
                       variant="standard"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
+                      value={content}
+                      onChange={(e) => setContent(e.target.value)}
                     />
                   </Grid>
                   <Grid item xs={12} sm={3}>
-                    <FormControl className={classes.formControl}>
-                      <InputLabel id="user_type">Tipo</InputLabel>
-                      <Select labelId="user_type" id="user_type" value={type} onChange={(e) => setType(e.target.value)}>
-                        <MenuItem value={1}>Administrador</MenuItem>
-                        <MenuItem value={2}>Gerente</MenuItem>
-                        <MenuItem value={3}>Redator</MenuItem>
-                      </Select>
-                    </FormControl>
-                  </Grid>
-                  <Grid item xs={12} sm={3}>
                     <TextField
-                      type="password"
+                      type="date"
                       required
-                      id="user_password"
-                      name="user_password"
-                      label="Senha"
+                      id="content"
+                      name="content"
                       fullWidth
-                      autoComplete="password"
+                      autoComplete="content"
                       variant="standard"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
+                      value={publishDate}
+                      onChange={(e) => setPublishDate(e.target.value)}
                     />
                   </Grid>
                   <Grid item xs={12} sm={12}>

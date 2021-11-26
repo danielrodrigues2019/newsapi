@@ -78,18 +78,18 @@ export default function UsersList() {
 
   return (
     <div className={classes.root}>
-      <MenuAdmin title={'LISTA DE USUÁRIOS'} />
+      <MenuAdmin title={'LISTA DE NOTÍCIAS'} />
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
             <Grid item sm={12}>
-              <Button style={{ marginBottom: 10 }} variant="contained" color="primary" href={'/admin/users/cadastrar'}>
+              <Button style={{ marginBottom: 10 }} variant="contained" color="primary" href={'/admin/articles/cadastrar'}>
                 <AddIcon />
                 Cadastrar
               </Button>
               <Paper className={classes.paper}>
-                <h2>Lista de Usuários</h2>
+                <h2>Lista de Notícias</h2>
                 <Grid container spacing={3}>
                   <Grid item xs={12} sm={12}>
                     <TableContainer component={Paper}>
@@ -99,9 +99,8 @@ export default function UsersList() {
                         <Table className={classes.table} aria-label="simple table">
                           <TableHead>
                             <TableRow>
-                              <TableCell>Nome</TableCell>
-                              <TableCell align="center">Email</TableCell>
-                              <TableCell align="center">Tipo</TableCell>
+                              <TableCell>Título</TableCell>
+                              <TableCell align="center">Conteúdo</TableCell>
                               <TableCell align="center">Data de Cadastro</TableCell>
                               <TableCell align="right">Opções</TableCell>
                             </TableRow>
@@ -113,7 +112,6 @@ export default function UsersList() {
                                   {row.title}
                                 </TableCell>
                                 <TableCell align="center">{row.content}</TableCell>
-
                                 <TableCell align="center">{dataFormatada}</TableCell>
                                 <TableCell align="right">
                                   <ButtonGroup aria-label="outlined primary button group">
