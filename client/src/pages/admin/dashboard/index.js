@@ -1,14 +1,11 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Box from '@material-ui/core/Box'
-
 import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid'
-
 import MenuAdmin from '../../../components/menu-admin'
 import { getUserType } from '../../../services/auth'
 import Footer from '../../../components/footer-admin'
-
 import DashRedator from './redator'
 import DashGerente from './gerente'
 import DashAdmin from './admin'
