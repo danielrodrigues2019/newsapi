@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(1),
   },
   submit: {
-    margin: theme.spacing(3, 0, 2),
+    margin: theme.spacing(3, 0, 1),
   },
 }))
 
@@ -139,6 +139,18 @@ export default function SignIn() {
           disabled={loading}
         >
           {loading ? <CircularProgress /> : 'ENTRAR'}
+        </Button>
+        <Button
+          fullWidth
+          variant="contained"
+          style={{ background: 'green' }}
+          color="secondary"
+          href={'/admin/users/cadastrar'}
+          className={classes.submit}
+          onClick={loadSubmit}
+          disabled={loading}
+        >
+          {loading ? <CircularProgress /> : 'CADASTRAR-SE'}
         </Button>
       </div>
       <Box mt={8}>
