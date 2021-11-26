@@ -5,10 +5,6 @@ import TextField from '@material-ui/core/TextField'
 import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
-import FormControl from '@material-ui/core/FormControl'
-import Select from '@material-ui/core/Select'
-import InputLabel from '@material-ui/core/InputLabel'
-import MenuItem from '@material-ui/core/MenuItem'
 import Button from '@material-ui/core/Button'
 import SaveIcon from '@material-ui/icons/Save'
 import api from '../../../services/api'
@@ -17,7 +13,7 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 import Footer from '../../../components/footer-admin'
 import 'date-fns'
 import DateFnsUtils from '@date-io/date-fns'
-import { MuiPickersUtilsProvider, KeyboardTimePicker, KeyboardDatePicker } from '@material-ui/pickers'
+import { MuiPickersUtilsProvider,  KeyboardDatePicker } from '@material-ui/pickers'
 
 const useStyles = makeStyles((theme) => ({
   root: { display: 'flex' },
@@ -35,8 +31,7 @@ export default function AddArticle() {
 
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
-  const [publishDate, setPublishDate] = useState('')
-  const [type, setType] = useState('')
+  const [publishDate, setPublishDate] = useState(new Date('2021-11-22T01:01:01'))
 
   async function handleSubmit() {
     const data = {
@@ -58,10 +53,9 @@ export default function AddArticle() {
     }
   }
   const handleDateChange = (date) => {
-    setSelectedDate(date)
+    setPublishDate(date)
   }
 
-  const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'))
 
   return (
     <div className={classes.root}>
@@ -108,11 +102,11 @@ export default function AddArticle() {
                       <KeyboardDatePicker
                         disableToolbar
                         variant="inline"
-                        format="MM/dd/yyyy"
+                        format="dd/MM/yyyy"
                         margin="normal"
                         id="date-picker-inline"
                         label="Date picker inline"
-                        value={selectedDate}
+                        value={publishDate}
                         onChange={handleDateChange}
                         KeyboardButtonProps={{
                           'aria-label': 'change date',

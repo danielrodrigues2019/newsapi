@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 import Dashboard from './pages/admin/dashboard'
 //imports admin articles
@@ -11,10 +11,10 @@ import UsersList from './pages/admin/users'
 import AddUser from './pages/admin/users/addUser'
 import EditUser from './pages/admin/users/editUser'
 //imports client
-import Home from './pages/client/home'
+// import Home from './pages/client/home'
 import ArticlesDetails from './pages/client/articles/articles.details'
 import Login from './pages/admin/login'
-import WAuth from './services/wAuth'
+// import WAuth from './services/wAuth'
 
 export default function Root() {
   return (
