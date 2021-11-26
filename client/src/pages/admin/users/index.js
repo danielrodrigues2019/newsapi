@@ -11,7 +11,6 @@ import TableContainer from '@material-ui/core/TableContainer'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import api from '../../../services/api'
-
 import Button from '@material-ui/core/Button'
 import ButtonGroup from '@material-ui/core/ButtonGroup'
 import LinearProgress from '@material-ui/core/LinearProgress'
@@ -20,9 +19,7 @@ import AddIcon from '@material-ui/icons/Add'
 import AutorenewIcon from '@material-ui/icons/Autorenew'
 import ClearIcon from '@material-ui/icons/Clear'
 import { getTypeName, getTypeNameLabel } from '.../../../src/functions/static_data'
-
 import MenuAdmin from '../../../components/menu-admin'
-
 import Footer from '../../../components/footer-admin'
 
 const useStyles = makeStyles((theme) => ({

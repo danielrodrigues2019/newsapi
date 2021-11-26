@@ -4,9 +4,8 @@ import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
 import ListSubheader from '@material-ui/core/ListSubheader'
 import DashboardIcon from '@material-ui/icons/Dashboard'
-// import NewspaperIcon from '@mui/icons-material/Newspaper'
+import DescriptionIcon from '@material-ui/icons/Description'
 import PeopleIcon from '@material-ui/icons/People'
-
 import ExitToApp from '@material-ui/icons/ExitToApp'
 import { getToken, logout } from '../services/auth'
 import api from '../services/api'
@@ -26,7 +25,9 @@ export const mainListItems = (
       <ListItemText primary="Usuários" />
     </ListItem>
     <ListItem button component="a" href="/admin/articles">
-      <ListItemIcon>{/* <NewspaperIcon /> */}</ListItemIcon>
+      <ListItemIcon>
+        <DescriptionIcon />
+      </ListItemIcon>
       <ListItemText primary="Notícias" />
     </ListItem>
   </div>
@@ -34,7 +35,7 @@ export const mainListItems = (
 
 export const secondaryListItems = (
   <div>
-    <ListSubheader inset>Opções</ListSubheader>
+    {/* <ListSubheader inset>Opções</ListSubheader> */}
     <ListItem button onClick={confirmSair}>
       <ListItemIcon>
         <ExitToApp />
