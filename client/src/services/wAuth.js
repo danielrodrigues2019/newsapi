@@ -21,7 +21,6 @@ export default function WAuth({ component: Component, ...rest }) {
         setRedirect(true)
       }
     }
-    setTimeout(() => verify(), 1000)
     verify()
   }, [])
 

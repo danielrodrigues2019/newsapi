@@ -10,6 +10,8 @@ import Select from '@material-ui/core/Select'
 import InputLabel from '@material-ui/core/InputLabel'
 import MenuItem from '@material-ui/core/MenuItem'
 import Button from '@material-ui/core/Button'
+import AddIcon from '@material-ui/icons/Add'
+import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 import SaveIcon from '@material-ui/icons/Save'
 import api from '../../../services/api'
 import MenuAdmin from '../../../components/menu-admin'
@@ -79,6 +81,13 @@ export default function EditUser() {
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
             <Grid item sm={12}>
+              <Button style={{ marginBottom: 10, marginRight: 5 }} variant="contained" href={'/admin/users'}>
+                <ArrowBackIcon /> Voltar
+              </Button>
+              <Button style={{ marginBottom: 10 }} variant="contained" color="primary" href={'/admin/users/cadastrar'}>
+                <AddIcon />
+                Cadastrar
+              </Button>
               <Paper className={classes.paper}>
                 <h2>Atualização de Usuários</h2>
                 <Grid container spacing={3}>

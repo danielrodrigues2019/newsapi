@@ -13,6 +13,7 @@ import Button from '@material-ui/core/Button'
 import SaveIcon from '@material-ui/icons/Save'
 import api from '../../../services/api'
 import MenuAdmin from '../../../components/menu-admin'
+import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 
 import Footer from '../../../components/footer-admin'
 
@@ -64,6 +65,9 @@ export default function Dashboard() {
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
             <Grid item sm={12}>
+              <Button style={{ marginBottom: 10, marginRight: 5 }} variant="contained" href={'/admin/users'}>
+                <ArrowBackIcon /> Voltar
+              </Button>
               <Paper className={classes.paper}>
                 <h2>Cadastro de Usuários</h2>
                 <Grid container spacing={3}>

@@ -85,6 +85,10 @@ export default function UsersList() {
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
             <Grid item sm={12}>
+              <Button style={{ marginBottom: 10 }} variant="contained" color="primary" href={'/admin/users/cadastrar'}>
+                <AddIcon />
+                Cadastrar
+              </Button>
               <Paper className={classes.paper}>
                 <h2>Lista de Usuários</h2>
                 <Grid container spacing={3}>
