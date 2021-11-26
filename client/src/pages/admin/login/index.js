@@ -113,20 +113,6 @@ export default function SignIn() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        {/* <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Digite sua senha"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-            value={senha}
-            onChange={e => setSenha(e.target.value)}
-          /> */}
-
         <FormControl variant="outlined" style={{ width: '100%', marginTop: 10 }}>
           <InputLabel htmlFor="campoSenha">Digite sua senha</InputLabel>
           <OutlinedInput
