@@ -14,11 +14,9 @@ import api from '../../../services/api'
 import Button from '@material-ui/core/Button'
 import ButtonGroup from '@material-ui/core/ButtonGroup'
 import LinearProgress from '@material-ui/core/LinearProgress'
-import Chip from '@material-ui/core/Chip'
 import AddIcon from '@material-ui/icons/Add'
 import AutorenewIcon from '@material-ui/icons/Autorenew'
 import ClearIcon from '@material-ui/icons/Clear'
-import { getTypeName, getTypeNameLabel } from '.../../../src/functions/static_data'
 import MenuAdmin from '../../../components/menu-admin'
 import Footer from '../../../components/footer-admin'
 
@@ -47,17 +45,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export default function ArticlesList() {
+export default function UsersList() {
   const classes = useStyles()
 
-  const [users, setUsers] = useState([])
+  const [articles, setArticles] = useState([])
 
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     async function loadUsers() {
       const response = await api.get('/api/articles')
-      setUsers(response.data)
+      setArticles(response.data)
       setLoading(false)
     }
     loadUsers()
@@ -65,7 +63,7 @@ export default function ArticlesList() {
 
   async function handleDelete(id) {
     if (window.confirm('Deseja realmente excluir esta notícia?')) {
-      var result = await api.delete('/api/articles' + id)
+      var result = await api.delete('/api/articles/' + id)
       if (result.status === 200) {
         window.location.href = '/admin/articles'
       } else {
@@ -74,25 +72,24 @@ export default function ArticlesList() {
     }
   }
 
+  const data = new Date();
+  const  dataFormatada = ("0" + data.getDate()).substr(-2) + "/"
+    + ("0" + (data.getMonth() + 1)).substr(-2) + "/" + data.getFullYear();
+
   return (
     <div className={classes.root}>
-      <MenuAdmin title={'LISTA DE NOTÍCIAS'} />
+      <MenuAdmin title={'LISTA DE USUÁRIOS'} />
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
             <Grid item sm={12}>
-              <Button
-                style={{ marginBottom: 10 }}
-                variant="contained"
-                color="primary"
-                href={'/admin/articles/cadastrar'}
-              >
+              <Button style={{ marginBottom: 10 }} variant="contained" color="primary" href={'/admin/users/cadastrar'}>
                 <AddIcon />
                 Cadastrar
               </Button>
               <Paper className={classes.paper}>
-                <h2>Lista de Notícias </h2>
+                <h2>Lista de Usuários</h2>
                 <Grid container spacing={3}>
                   <Grid item xs={12} sm={12}>
                     <TableContainer component={Paper}>
@@ -110,23 +107,17 @@ export default function ArticlesList() {
                             </TableRow>
                           </TableHead>
                           <TableBody>
-                            {users.map((row) => (
+                            {articles.map((row) => (
                               <TableRow key={row._id}>
                                 <TableCell component="th" scope="row">
-                                  {row.user_name}
+                                  {row.title}
                                 </TableCell>
-                                <TableCell align="center">{row.user_email}</TableCell>
-                                <TableCell align="center">
-                                  <Chip label={getTypeName(row.user_type)} color={getTypeNameLabel(row.user_type)} />
-                                </TableCell>
-                                <TableCell align="center">{new Date(row.createdAt).toLocaleString('pt-br')}</TableCell>
+                                <TableCell align="center">{row.content}</TableCell>
+
+                                <TableCell align="center">{dataFormatada}</TableCell>
                                 <TableCell align="right">
                                   <ButtonGroup aria-label="outlined primary button group">
-                                    <Button
-                                      variant="contained"
-                                      color="primary"
-                                      href={'/admin/articles/editar/' + row._id}
-                                    >
+                                    <Button variant="contained" color="primary" href={'/admin/articles/editar/' + row._id}>
                                       <AutorenewIcon /> Atualizar
                                     </Button>
                                     <Button variant="contained" color="secondary" onClick={() => handleDelete(row._id)}>

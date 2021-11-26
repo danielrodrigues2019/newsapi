@@ -74,6 +74,10 @@ export default function UsersList() {
     }
   }
 
+  const data = new Date();
+  const  dataFormatada = ("0" + data.getDate()).substr(-2) + "/"
+    + ("0" + (data.getMonth() + 1)).substr(-2) + "/" + data.getFullYear();
+
   return (
     <div className={classes.root}>
       <MenuAdmin title={'LISTA DE USUÁRIOS'} />
@@ -114,7 +118,7 @@ export default function UsersList() {
                                 <TableCell align="center">
                                   <Chip label={getTypeName(row.user_type)} color={getTypeNameLabel(row.user_type)} />
                                 </TableCell>
-                                <TableCell align="center">{new Date(row.createdAt).toLocaleString('pt-br')}</TableCell>
+                                <TableCell align="center">{dataFormatada}</TableCell>
                                 <TableCell align="right">
                                   <ButtonGroup aria-label="outlined primary button group">
                                     <Button variant="contained" color="primary" href={'/admin/users/editar/' + row._id}>
