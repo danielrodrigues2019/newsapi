@@ -101,7 +101,7 @@ export default function UsersList() {
                             <TableRow>
                               <TableCell>Título</TableCell>
                               <TableCell align="center">Conteúdo</TableCell>
-                              <TableCell align="center">Data de Cadastro</TableCell>
+                              <TableCell align="center">Data de Publicação</TableCell>
                               <TableCell align="right">Opções</TableCell>
                             </TableRow>
                           </TableHead>
