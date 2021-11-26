@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { BrowserRouter, Routes, Route, Router } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 
 //imports admin
 import Dashboard from './pages/admin/dashboard'
@@ -18,7 +18,7 @@ import Home from './pages/client/home'
 import ArticlesDetails from './pages/client/articles/articles.details'
 import Login from './pages/admin/login'
 
-import PrivateRoute from './services/wAuth'
+import WAuth from './services/wAuth'
 
 export default function Root() {
   return (
@@ -29,7 +29,10 @@ export default function Root() {
         <Route path="/articles/:idArticle" element={<ArticlesDetails />} />
         {/* Admin route */}
         <Route path="/admin" element={<Dashboard />} />
+
         <Route path="/admin/login" element={<Login />} />
+
+        {/* <Route path="/admin/users" element={<WAuth />} /> */}
 
         <Route path="/admin/articles" element={<ArticlesList />} />
         <Route path="/admin/articles/cadastrar" element={<AddArticle />} />
