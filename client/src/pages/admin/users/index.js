@@ -19,6 +19,7 @@ import Chip from '@material-ui/core/Chip'
 import AddIcon from '@material-ui/icons/Add'
 import AutorenewIcon from '@material-ui/icons/Autorenew'
 import ClearIcon from '@material-ui/icons/Clear'
+import { getTypeName, getTypeNameLabel } from '.../../../src/functions/static_data'
 
 import MenuAdmin from '../../../components/menu-admin'
 
@@ -110,10 +111,7 @@ export default function UsersList() {
                                 </TableCell>
                                 <TableCell align="center">{row.user_email}</TableCell>
                                 <TableCell align="center">
-                                  <Chip
-                                  // label={getNomeTipo(row.type_usuario)}
-                                  // color={getNomeTipoLabel(row.type_usuario)}
-                                  />
+                                  <Chip label={getTypeName(row.user_type)} color={getTypeNameLabel(row.user_type)} />
                                 </TableCell>
                                 <TableCell align="center">{new Date(row.createdAt).toLocaleString('pt-br')}</TableCell>
                                 <TableCell align="right">

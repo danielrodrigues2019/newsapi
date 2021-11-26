@@ -17,7 +17,8 @@ import Toolbar from '@material-ui/core/Toolbar'
 import IconButton from '@material-ui/core/IconButton'
 
 import { mainListItems, secondaryListItems } from './list-menu-admin'
-
+import { getUserName } from '../services/auth'
+import Logo from '../assets/logo.png'
 const drawerWidth = 240
 
 const useStyles = makeStyles((theme) => ({
@@ -109,6 +110,7 @@ export default function MenuAdmin({ title }) {
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
             {title}
           </Typography>
+          {getUserName()}
         </Toolbar>
       </AppBar>
       <Drawer
@@ -119,7 +121,7 @@ export default function MenuAdmin({ title }) {
         open={open}
       >
         <div className={classes.toolbarIcon}>
-          <img style={{ width: 150, height: 50 }} alt="Logo" />
+          <img style={{ width: 150, height: 50 }} alt="Logo" src={Logo} />
           <IconButton onClick={handleDrawerClose}>
             <ChevronLeftIcon />
           </IconButton>
